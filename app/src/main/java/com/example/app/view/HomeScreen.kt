@@ -21,29 +21,33 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.app.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun homeScreen() {
-    Scaffold(
+fun homeScreen(navController : NavController) {
+
+    Scaffold( //Esto es la estructura base
         topBar = {
-            TopAppBar(title = { Text("Mi Aplicación en Kotlin") })
+            TopAppBar(title = { Text("Mi Aplicación en Kotlin FBLink") })
         }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Center
+    ) { innerPadding -> //Esto es para hacer separaciones
+        Column( //Se puede estructurar en columna
+            modifier = Modifier //Modificador de aspecto
+                .padding(innerPadding) //espaciado
+                .fillMaxSize() //ocupar linea compleata
+                .padding(16.dp), //Espaciado específico
+            verticalArrangement = Arrangement.Center //Alineacion centrada
         ) {
             Text(text = "Bienvenid@!",
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold //texto en negrita
             )
-            Button(onClick = {/*Acción para que me lleve a otra ventana que muestre una imagen */},
+            /*onClick es para llamar una accion --> navigate es quien hace la navegación
+            por medio de la ruta en String*/
+            Button(onClick = {navController.navigate("SecondScreen")},
                 colors = ButtonDefaults.buttonColors(
-                    Color.Red,
+                    Color.Black,
                     Color.White
                 )
             ) {
@@ -51,23 +55,19 @@ fun homeScreen() {
 
 
             }
+            //Para subir imagenes
+            //Painter es quien obtiene y muestra
             Image(
-                painter = painterResource(id = R.drawable.logo),
+                painter = painterResource(id = R.drawable.escudo),
                 "Logo App",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(150.dp),
-                contentScale = ContentScale.Fit
+                    .height(150.dp), //altura de la imagen
+                contentScale = ContentScale.Fit //escalado (fit, crop, etc)
 
             )
         }
 
     }
-}
-
-@Preview (showBackground = true)
-@Composable
-fun homeScreenPreview(){
-    homeScreen()
 }
 
