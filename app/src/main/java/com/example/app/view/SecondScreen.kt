@@ -25,7 +25,7 @@ fun secondScreen(navController : NavController) {
     ) {
         Text("Devuélveme")
     }
-    //Se crea una columna para darle caracteristicas y configuracion
+    //Se crea una columna para darle caracteristicas y configuracion como centrar elementos
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
